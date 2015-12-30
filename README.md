@@ -8,17 +8,15 @@ A library of useful clojure utilities.
 
 ## Usage
 
-To generage documentation, using codox:
+To generate documentation, using codox:
 ```
-$ lein clean && lein codox
+$ lein codox
 ```
 
-To build for use as a dependency:
+To install locally:
 ```
 $ lein build-install
 ```
-
-Then, require and use.
 
 ## License
 
