@@ -1,4 +1,4 @@
-**[API docs][http://rwilson.github.io/clj-lib/]**
+**[API docs](http://rwilson.github.io/clj-lib/)**
 
 [![Clojars Project](http://clojars.org/rwilson/clj-lib/latest-version.svg)](http://clojars.org/rwilson/clj-lib)
 
