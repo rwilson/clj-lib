@@ -24,7 +24,8 @@
 
   ;; Codox
   :codox {:metadata {:doc "FIXME: write docs"}
-          :source-uri "http://github.com/rwilson/clj-lib/blob/master/{version}/{filepath}/#L{line}"}
+          :output-path "doc/"
+          :source-uri "http://github.com/rwilson/clj-lib/blob/master/{filepath}/#L{line}"}
 
   ;; Target path with %s included to avoid cross-profile contamination
   :target-path "target/%s"
