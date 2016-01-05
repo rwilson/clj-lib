@@ -134,12 +134,12 @@
   "Executes `body` in a context in which `*in*` is bound to a reader of `s`. See
   See `clojure.java.io/reader` for supported argument types."
   [s & body]
-  `(binding [*in* (java.io/reader s)]
+  `(binding [*in* (java.io/reader ~s)]
      ~@body))
 
 (defmacro with-out
   "Executes `body` in a context in which `*out*` is bound to a writer to `s`.
   See `clojure.java.io/writer` for supported argument types."
   [s & body]
-  `(binding [*out* (java.io/writer s)]
+  `(binding [*out* (java.io/writer ~s)]
      ~@body))
