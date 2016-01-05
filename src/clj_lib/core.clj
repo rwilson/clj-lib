@@ -119,3 +119,9 @@
   truthful given the result of esecuting `body`."
   [count pred? & body]
   `(retry* ~count ~pred? (fn [] ~@body)))
+
+(defmacro thread
+  "Executes `body` in a new thread. Like `future`, except it returns the thread
+  instead of the result of `body`."
+  [& body]
+  `(.start (Thread. (fn [] ~@body))))

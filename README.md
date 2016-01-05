@@ -18,6 +18,10 @@ To install locally:
 $ lein build-install
 ```
 
+## Changelog
+
+**0.2.0** Added core/thread macro 
+
 ## License
 
 Copyright © 2015 Ryan Wilson
