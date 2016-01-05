@@ -6,7 +6,7 @@
 ;   the terms of this license.
 ;   You must not remove this notice, or any other, from this software.
 
-(defproject rwilson/clj-lib "0.1.0"
+(defproject rwilson/clj-lib "0.1.1-SNAPSHOT"
   :description "Util libraries for common tasks"
   :url "http://github.com/rwilson/clj-lib/"
   :license {:name "Eclipse Public License"
@@ -42,4 +42,11 @@
                    :regression :regression
                    :all (constantly true)}
 
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}}
+
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version"
+                   "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]
+                  ["deploy"]])
