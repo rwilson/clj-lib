@@ -20,7 +20,9 @@ $ lein build-install
 
 ## Changelog
 
-**0.2.0** Added core/thread macro 
+**0.2.0** 
+* Added core/thread macro 
+* Added io/with-in and io/with-out macros
 
 ## License
 
