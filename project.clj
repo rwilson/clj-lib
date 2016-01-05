@@ -42,4 +42,11 @@
                    :regression :regression
                    :all (constantly true)}
 
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}}
+
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version"
+                   "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]
+                  ["deploy"]])
