@@ -124,4 +124,5 @@
   "Executes `body` in a new thread. Like `future`, except it returns the thread
   instead of the result of `body`."
   [& body]
-  `(.start (Thread. (fn [] ~@body))))
+  `(doto (Thread. (fn [] ~@body))
+     (.start)))

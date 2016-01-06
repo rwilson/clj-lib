@@ -123,3 +123,11 @@
                             (retry* retry-count
                                     (complement #(instance? Throwable %))
                                     throw-ex))))))
+
+(deftest test-thread
+  (let [a (atom false)
+        t (thread (reset! a true))]
+    (is (instance? java.lang.Thread t))
+    (while (.isAlive t)
+      (Thread/sleep 1))
+    (is (true? @a))))
