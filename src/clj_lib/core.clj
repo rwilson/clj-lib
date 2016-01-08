@@ -9,6 +9,32 @@
 (ns clj-lib.core
   "Useful fns, of all purposes, that might be considered language extensions.")
 
+(defn maybe?
+  "Returns true if either `val` is nil or `(pred? val)` returns truthful.
+
+  Useful for situations where `nil` is acceptable, but when non-nil `val` is
+  expected to meet some criterion.
+
+  Examples:
+
+      (maybe? map? m)
+      (maybe? string? s)
+  "
+  [pred? val]
+  {:pre [(ifn? pred?)]}
+  (or (nil? val) (pred? val)))
+
+(def not-neg?
+  "As named. Equivalent to `(or (pos? v) (zero? v))`."
+  (complement neg?))
+
+(defn str=
+  "Evaulates equality by converting all args to strings and then testing with
+  string equality. Useful when comparing stringy values that may not all be
+  strings, such as `1`, `\"1\"`, and `:1`."
+  [& args]
+  (apply = (map str args)))
+
 (defn between
   "Returns true if `v` is between `min` and `max`, inclusive of both."
   [v min max]

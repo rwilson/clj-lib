@@ -20,6 +20,11 @@ $ lein build-install
 
 ## Changelog
 
+**0.3.0**
+* Added core/maybe?
+* Added core/not-neg?
+* Added core/str=
+
 **0.2.1**
 * Bug fix: core/thread macro did not return thread, as docs stated 
 

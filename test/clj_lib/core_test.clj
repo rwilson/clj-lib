@@ -10,6 +10,21 @@
   (:require [clj-lib.core :refer :all]
             [clojure.test :refer :all]))
 
+(deftest test-maybe?
+  (is (true? (maybe? map? nil)))
+  (is (true? (maybe? map? {})))
+  (is (false? (maybe? map? []))))
+
+(deftest test-not-neg?
+  (is (true? (not-neg? 1)))
+  (is (true? (not-neg? 0)))
+  (is (false? (not-neg? -1))))
+
+(deftest test-str=
+  (is (false? (= "1000" 1000)))
+  (is (true? (str= "1000" 1000)))
+  (is (true? (str= "" nil))))
+
 (deftest test-between
   (is (between 1 1 1))
   (is (between 2 1 2))
