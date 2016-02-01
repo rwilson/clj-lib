@@ -114,8 +114,8 @@
   [v] (if (instance? Throwable v) (throw v) v))
 
 (defn retry*
-  "Tries to executy `f` up to the number of times specified or until `pred?` returns
-  truthful given the result of esecuting `f`. If `f` throws, the thrown value is caught
+  "Tries to execute `f` up to the number of times specified or until `pred?` returns
+  truthful given the result of executing `f`. If `f` throws, the thrown value is caught
   and passed to `pred?`.
 
   This can be used to retry until a non-Exception response, like so:
@@ -141,8 +141,8 @@
           (recur (dec index)))))))
 
 (defmacro retry
-  "Tries to executy `body` up to the number of times specified or until `pred?` returns
-  truthful given the result of esecuting `body`."
+  "Tries to execute `body` up to the number of times specified or until `pred?` returns
+  truthful given the result of executing `body`."
   [count pred? & body]
   `(retry* ~count ~pred? (fn [] ~@body)))
 
