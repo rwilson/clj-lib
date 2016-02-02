@@ -20,6 +20,10 @@ $ lein build-install
 
 ## Changelog
 
+**0.4.0**
+* Added core/quote-string
+* Added core/escape-quotes
+
 **0.3.0**
 * Added core/maybe?
 * Added core/not-neg?
