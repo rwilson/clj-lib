@@ -7,7 +7,8 @@
 ;   You must not remove this notice, or any other, from this software.
 
 (ns clj-lib.core
-  "Useful fns, of all purposes, that might be considered language extensions.")
+  "Useful fns, of all purposes, that might be considered language extensions."
+  (:require [clojure.string :as string]))
 
 (defn maybe?
   "Returns true if either `val` is nil or `(pred? val)` returns truthful.
@@ -34,6 +35,21 @@
   strings, such as `1`, `\"1\"`, and `:1`."
   [& args]
   (apply = (map str args)))
+
+(defn quote-string
+  "Returns `s` surrounded by double-quotes."
+  [s]
+  {:pre [(maybe? string? s)]}
+  (if (seq s)
+    (str \" s \")
+    ""))
+
+(defn escape-quotes
+  "Double-escapes double-quotes in `s`."
+  [s]
+  {:pre [(maybe? string? s)]}
+  (when s
+    (string/escape s {\" "\\\""})))
 
 (defn between
   "Returns true if `v` is between `min` and `max`, inclusive of both."

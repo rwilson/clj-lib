@@ -25,6 +25,16 @@
   (is (true? (str= "1000" 1000)))
   (is (true? (str= "" nil))))
 
+(deftest test-quote-string
+  (is (= "" (quote-string nil)))
+  (is (= "" (quote-string "")))
+  (is (= "\"foo\"" (quote-string "foo")))
+  (is (= "\"1\"" (quote-string "1"))))
+
+(deftest test-escape-quotes
+  (is (= "quoted \\\"foo bar\\\" baz"
+         (escape-quotes "quoted \"foo bar\" baz"))))
+
 (deftest test-between
   (is (between 1 1 1))
   (is (between 2 1 2))
