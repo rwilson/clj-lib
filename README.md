@@ -20,6 +20,9 @@ $ lein build-install
 
 ## Changelog
 
+**0.5.0**
+* Added core/defdata macro
+
 **0.4.0**
 * Added core/quote-string
 * Added core/escape-quotes
