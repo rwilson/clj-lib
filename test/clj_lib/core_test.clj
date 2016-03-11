@@ -156,3 +156,9 @@
     (while (.isAlive t)
       (Thread/sleep 1))
     (is (true? @a))))
+
+(defdata data "test-data/data.edn")
+
+(deftest test-defdata
+  (is (= (:foo data) "bar"))
+  (is (= (:baz data) 1)))

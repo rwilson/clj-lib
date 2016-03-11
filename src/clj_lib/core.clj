@@ -8,7 +8,8 @@
 
 (ns clj-lib.core
   "Useful fns, of all purposes, that might be considered language extensions."
-  (:require [clojure.string :as string]))
+  (:require [clojure.java.io :as java.io]
+            [clojure.string :as string]))
 
 (defn maybe?
   "Returns true if either `val` is nil or `(pred? val)` returns truthful.
@@ -168,3 +169,10 @@
   [& body]
   `(doto (Thread. (fn [] ~@body))
      (.start)))
+
+(defmacro defdata
+  "Macro for compiling some data at build time from an edn file, to avoid
+  runtime lookups to the file."
+  [name path]
+  (let [data (-> path slurp read-string)]
+    `(def ~name ~data)))
