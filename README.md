@@ -20,6 +20,9 @@ $ lein build-install
 
 ## Changelog
 
+**0.6.0**
+* Added io/last-modified 
+
 **0.5.0**
 * Added core/defdata macro
 

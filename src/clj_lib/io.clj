@@ -8,8 +8,7 @@
 
 (ns clj-lib.io
   "Useful utility fns for local & network IO"
-  (:require [clojure.java.io :as clj-io]
-            [clojure.string :as clj-str]
+  (:require [clojure.java.io :as java.io]
             [clj-lib.types :refer (byte-array? ->string)])
   (:import [java.io ByteArrayOutputStream]
            [java.util.zip Deflater Inflater DeflaterOutputStream InflaterOutputStream]
@@ -120,9 +119,16 @@
   "Ensures that all directories in the specified `path` exist, creating them if
   necessary."
   [path]
-  (let [parent-dir (.getParentFile (clj-io/as-file path))]
+  (let [parent-dir (.getParentFile (java.io/as-file path))]
     (when-not (.exists parent-dir)
       (.mkdirs parent-dir))))
+
+(defn last-modified
+  "Returns the last-modified time for the specified path, if it exists; nil
+  otherwise."
+  [path]
+  (when-let [f (java.io/as-file path)]
+    (.lastModified f)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
