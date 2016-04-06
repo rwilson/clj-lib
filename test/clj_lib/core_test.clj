@@ -44,11 +44,24 @@
   (is (not (between 1 2 3)))
   (is (not (between 3 1 2))))
 
+(deftest test-clamp
+  (is (= 5  (clamp  5 0 10)))
+  (is (= 0  (clamp -1 0 10)))
+  (is (= 10 (clamp 11 0 10)))
+  (is (= 5.0  (clamp  5.0 0.0 10.0)))
+  (is (= 0.0  (clamp -1.0 0.0 10.0)))
+  (is (= 10.0 (clamp 11.0 0.0 10.0)))
+
+  (is (zero? (transduce (clamp 0  1) + (take 10 (repeat -1)))))
+  (is (= 100 (transduce (clamp 0 10) + (take 10 (repeat 15))))))
+
 (deftest test-round
   (is (= 1.0 (round 1 1)))
   (is (= 1.0 (round 1 1.0)))
   (is (= 1.0 (round 1 1.000001)))
-  (is (= 1.2 (round 1 (+ 1.1 0.1)))))
+  (is (= 1.2 (round 1 (+ 1.1 0.1))))
+
+  (is (= 80.0 (transduce (round 0) + (take 10 (repeat 8.25))))))
 
 (deftest test-avg
   (is (= 1 (avg 1)))

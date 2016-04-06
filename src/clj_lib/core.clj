@@ -57,14 +57,40 @@
   [v min max]
   (and (>= v min) (<= v max)))
 
+(defn clamp
+  "Clamps number `n` between `min` and `max` inclusive of each. When called with
+  only two args, produces a transducer."
+  ([nmin nmax]
+   (fn [rf]
+     (fn
+       ([] (rf))
+       ([result] (rf result))
+       ([result input]
+        (rf result (clamp input nmin nmax))))))
+  ([n nmin nmax]
+   {:pre [(number? n)
+          (number? nmin)
+          (number? nmax)]}
+   (-> n
+     (max nmin)
+     (min nmax))))
+
 (defn round
   "Rounds a number to the specified precision. This is a modified version of the
   round fn used here: http://clojure-doc.org/articles/language/functions.html
   Compared to the reference, the argument order is reversed so it is more easily
-  used in partially applied form as a map fn."
-  [precision n]
-  (let [factor (Math/pow 10 precision)]
-    (/ (Math/round (* n factor)) factor)))
+  used in partially applied form as a map fn. When called with only a precision,
+  returns a transducer."
+  ([precision]
+   (fn [rf]
+     (fn
+       ([] (rf))
+       ([result] (rf result))
+       ([result input]
+        (rf result (round precision input))))))
+  ([precision n]
+   (let [factor (Math/pow 10 precision)]
+     (/ (Math/round (* n factor)) factor))))
 
 (defn avg
   "Returns the average of the nums; a la clj min/max"

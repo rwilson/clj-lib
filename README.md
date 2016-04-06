@@ -20,6 +20,10 @@ $ lein build-install
 
 ## Changelog
 
+**0.7.0**
+* Added core/clamp
+* Added transducer producing arity of core/round
+
 **0.6.0**
 * Added io/last-modified 
 

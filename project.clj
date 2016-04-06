@@ -6,7 +6,7 @@
 ;   the terms of this license.
 ;   You must not remove this notice, or any other, from this software.
 
-(defproject rwilson/clj-lib "0.6.0"
+(defproject rwilson/clj-lib "0.7.0"
   :description "Util libraries for common tasks"
   :url "http://github.com/rwilson/clj-lib/"
   :license {:name "Eclipse Public License"
@@ -20,7 +20,7 @@
             ["do" ["clean"] ["jar"] ["test"] ["install"] ["codox"]]}
 
   :dependencies [[org.clojure/clojure "1.7.0"]]
-  :plugins [[lein-codox "0.9.1"]]
+  :plugins [[lein-codox "0.9.4"]]
 
   ;; Codox
   :codox {:metadata {:doc "FIXME: write docs"}
