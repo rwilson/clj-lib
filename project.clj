@@ -31,4 +31,9 @@
   :profiles {:uberjar {:aot :all}}
 
   :repositories [["releases" {:creds :gpg}]]
-  :deploy-repositories [["releases" :clojars]])
+  :deploy-repositories [["releases" :clojars]]
+
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version" "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]])
