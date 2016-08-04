@@ -20,7 +20,7 @@
             ["do" ["clean"] ["jar"] ["test"] ["install"] ["codox"]]}
 
   :dependencies [[org.clojure/clojure "1.7.0"]]
-  :plugins [[lein-codox "0.9.4"]]
+  :plugins [[lein-codox "0.9.5"]]
 
   ;; Codox
   :codox {:metadata {:doc "FIXME: write docs"}
