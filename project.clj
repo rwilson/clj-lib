@@ -6,7 +6,7 @@
 ;   the terms of this license.
 ;   You must not remove this notice, or any other, from this software.
 
-(defproject rwilson/clj-lib "0.8.0-SNAPSHOT"
+(defproject rwilson/clj-lib "0.8.0"
   :description "Util libraries for common tasks"
   :url "http://github.com/rwilson/clj-lib/"
   :license {:name "Eclipse Public License"
