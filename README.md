@@ -20,6 +20,9 @@ $ lein build-install
 
 ## Changelog
 
+**0.8.0**
+ * Added core/deep-merge and core/deep-merge-with like so many other libs
+
 **0.7.0**
 * Added core/clamp
 * Added transducer producing arity of core/round

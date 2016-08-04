@@ -129,6 +129,20 @@
   [f m]
   (reduce-kv #(assoc %1 %2 (f %3)) {} m))
 
+(defn deep-merge
+  "Like merge, but recursive."
+  [& maps]
+  (if (every? map? maps)
+    (apply merge-with deep-merge maps)
+    (last maps)))
+
+(defn deep-merge-with
+  "Like `merge-with`, but recursive so it works more than 1-level deep."
+  [f & maps]
+  (if (every? map? maps)
+    (apply merge-with (partial deep-merge-with f) maps)
+    (apply f maps)))
+
 (defn removev
   "Returns vector `v` with index `i` removed.  `v` is nil, returns nil. `i` must
   be a 0-indexed integer between 0 and the length of `v`."
