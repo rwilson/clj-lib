@@ -11,7 +11,7 @@
   :url "http://github.com/rwilson/clj-lib/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"
-            :comments "Same as clojure!"}
+            :comments "Same as clojure."}
 
   :aliases {"build" ^{:doc "Clean, compile all, test"}
             ["do" ["clean"] ["jar"] ["test"] ["codox"]]
@@ -27,27 +27,11 @@
           :output-path "doc/"
           :source-uri "http://github.com/rwilson/clj-lib/blob/master/{filepath}/#L{line}"}
 
-  ;; Target path with %s included to avoid cross-profile contamination
-  :target-path "target/%s"
-  :compile-path "%s/classy-files"
-
-  :clean-targets [:target-path :compile-path]
-
-  ;; Define network vs non-network test selectors
-  :test-selectors {:default (fn [m] (not (or (:integration m)
-                                            (:regression m)
-                                            (:network m))))
+  :test-selectors {:default (fn [m] (not (:network m)))
                    :network :network
-                   :integration :integration
-                   :regression :regression
                    :all (constantly true)}
 
   :profiles {:uberjar {:aot :all}}
 
-  :deploy-repositories [["releases" :clojars]]
-
-  :release-tasks [["vcs" "assert-committed"]
-                  ["change" "version"
-                   "leiningen.release/bump-version" "release"]
-                  ["vcs" "commit"]
-                  ["vcs" "tag"]])
+  :repositories [["releases" {:creds :gpg}]]
+  :deploy-repositories [["releases" :clojars]])
