@@ -14,10 +14,7 @@
             :comments "Same as clojure."}
 
   :aliases {"build" ^{:doc "Clean, compile all, test"}
-            ["do" ["clean"] ["jar"] ["test"] ["codox"]]
-
-            "build-install" ^{:doc "Clean, compile all, test, & install"}
-            ["do" ["clean"] ["jar"] ["test"] ["install"] ["codox"]]}
+            ["do" ["clean"] ["jar"] ["test"] ["codox"]]}
 
   :dependencies [[org.clojure/clojure "1.7.0"]]
   :plugins [[lein-codox "0.9.5"]]
