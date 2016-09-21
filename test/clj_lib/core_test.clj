@@ -64,9 +64,11 @@
   (is (= 80.0 (transduce (round 0) + (take 10 (repeat 8.25))))))
 
 (deftest test-avg
+  (is (nil? (avg)))
   (is (= 1 (avg 1)))
   (is (= 3 (avg 2 4)))
-  (is (= 3 (avg 1 3 5))))
+  (is (= 3 (avg 1 3 5)))
+  (is (= 4 (avg 2 2 6 6))))
 
 (deftest test-min-max
   (is (= [ 1 10] (min-max (range  1 11))))

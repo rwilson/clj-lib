@@ -93,15 +93,13 @@
      (/ (Math/round (* n factor)) factor))))
 
 (defn avg
-  "Returns the average of the nums; a la clj min/max"
-  ([x] x)
-  ([x y] (/ (+ x y) 2))
-  ([x y & more]
-    (/ (+ x y (apply + more))
-       (+ 2 (count more)))))
+  "Returns the average of the numbers `vs`; a la clj min/max"
+  [& vs]
+  (when vs
+    (/ (apply + vs) (count vs))))
 
 (defn min-max
-  "returns [(min coll) (max coll)] while iterating coll only once"
+  "Returns [(min coll) (max coll)] while iterating coll only once"
   [coll]
   (reduce (fn [result item]
             (if (nil? result)
