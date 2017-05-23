@@ -177,3 +177,29 @@
 (deftest test-defdata
   (is (= (:foo data) "bar"))
   (is (= (:baz data) 1)))
+
+(deftest test-get-and-reset!
+  (let [a (atom 0)]
+    (is (= 0 (get-and-reset! a 1)))
+    (is (= 1 @a))
+    (is (= 1 (get-and-reset! a nil)))
+    (is (nil? @a))))
+
+(deftest test-get-and-swap!
+  (let [a (atom 0)]
+    (is (= 0 (get-and-swap! a inc)))
+    (is (= 1 @a))
+    (is (= 1 (get-and-swap! a dec)))
+    (is (= 0 @a))
+
+    (is (= 0 (get-and-swap! a + 1)))
+    (is (= 1 @a))
+    (is (= 1 (get-and-swap! a - 1)))
+    (is (= 0 @a))
+
+    (is (= 0 (get-and-swap! a + 1 1)))
+    (is (= 2 @a))
+
+    (is (= 2 (get-and-swap! a + 1 1 1)))
+    (is (= 5 @a))
+    ))

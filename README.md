@@ -20,6 +20,11 @@ $ lein build-install
 
 ## Changelog
 
+**0.9.0**
+ * Added get-and-swap! Semantically simlar to swap! but retunrs old val
+ * Added get-and-reset! Semantically simlar to reset! but returns old val
+ * Intended to be made obsolete by [CLJ-1454|https://dev.clojure.org/jira/browse/CLJ-1454]
+
 **0.8.1**
  * Simplify core/avg implementation
 
@@ -54,7 +59,7 @@ $ lein build-install
 
 ## License
 
-Copyright © 2015 Ryan Wilson
+Copyright © 2015-2017 Ryan Wilson
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

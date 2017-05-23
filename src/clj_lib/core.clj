@@ -214,3 +214,26 @@
   [name path]
   (let [data (-> path slurp read-string)]
     `(def ~name ~data)))
+
+(defn get-and-reset!
+  "Sets the value of `atom` to `newval` without regard for the current value.
+  Returns the previous value of `atom`."
+  [atom newval]
+  (loop [val @atom]
+    (if (compare-and-set! atom val newval)
+      val
+      (recur @atom))))
+
+(defn get-and-swap!
+  "Atomically swaps the value of atom to be:
+  `(apply f current-value-of-atom args)`. Note that f may be called multiple
+  times, and thus should be free of side effects.
+  Returns the last `current-value-of-atom` before swap."
+  ([atom f]
+   (loop [val @atom]
+     (if (compare-and-set! atom val (f val))
+       val
+       (recur @atom))))
+  ([atom f x] (get-and-swap! atom #(f % x)))
+  ([atom f x y] (get-and-swap! atom #(f % x y)))
+  ([atom f x y & args] (get-and-swap! atom #(apply f % x y args))))
