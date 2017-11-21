@@ -8,7 +8,8 @@
 
 (ns clj-lib.core
   "Useful fns, of all purposes, that might be considered language extensions."
-  (:require [clojure.java.io :as java.io]
+  (:require [clojure.edn :as edn]
+            [clojure.java.io :as java.io]
             [clojure.string :as string]))
 
 (defn maybe?
@@ -212,8 +213,8 @@
   "Macro for compiling some data at build time from an edn file, to avoid
   runtime lookups to the file."
   [name path]
-  (let [data (-> path slurp read-string)]
-    `(def ~name ~data)))
+  (let [data (edn/read (java.io.PushbackReader. (java.io/reader path)))]
+    `(def ~name (quote ~data))))
 
 (defn get-and-reset!
   "Sets the value of `atom` to `newval` without regard for the current value.
@@ -237,3 +238,17 @@
   ([atom f x] (get-and-swap! atom #(f % x)))
   ([atom f x y] (get-and-swap! atom #(f % x y)))
   ([atom f x y & args] (get-and-swap! atom #(apply f % x y args))))
+
+(defn assoc-nx
+  "Associates `k` to `v` in `m` only if `k` is not present in `m`."
+  [m k v]
+  (if (contains? m k)
+    m
+    (assoc m k v)))
+
+(defn dissoc-eq
+  "Dissociates `k` from `m` only if `(get m k)` equals `expected`."
+  [m k expected]
+  (if (= expected (get m k))
+    (dissoc m k)
+    m))

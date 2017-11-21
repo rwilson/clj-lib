@@ -173,10 +173,14 @@
     (is (true? @a))))
 
 (defdata data "test-data/data.edn")
+(defdata data-list "test-data/data-list.edn")
 
 (deftest test-defdata
+  (is (map? data))
   (is (= (:foo data) "bar"))
-  (is (= (:baz data) 1)))
+  (is (= (:baz data) 1))
+  (is (list? data-list))
+  (is (= 2 (count data-list))))
 
 (deftest test-get-and-reset!
   (let [a (atom 0)]
